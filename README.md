@@ -1,7 +1,7 @@
 # Ranking Rules
 This script will rank the contribution of team member's contribution over a task according to the members' public voting. Ranking and weights will be generated. The algorithm is based on analytic hierarchy process (AHP), see [Wikipedia](https://en.wikipedia.org/wiki/Analytic_hierarchy_process) for the details.
 
-
+</br>
 
 ### Usage
 The ranking process is divided into voting and ranking. `generate_tables.py` will generate a voting table (.csv file) according to the related member's names. When all the members filled the tables, `rank.py` will give the ranking according to result in the tables.
@@ -40,7 +40,7 @@ After gathering all members' submission of voting tables into a directory, the r
 python3 rank.py [-h] [--input_dir INPUT_DIR]
 ```
 
-
+</br>
 
 ### Example
 
