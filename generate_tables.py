@@ -14,13 +14,11 @@ arg_parser.add_argument(
     '--output_path', 
     help='output path of the vote table file', 
     type=str,
-    default='./'
+    default='./vote_table.csv'
 )
 args = arg_parser.parse_args()
 
 member_names = args.names.split(',')
-for name in member_names:
-    print(name)
 if len(member_names) == 0 or any(len(name) == 0 for name in member_names):
     print('Invalid --name argument. Use -h to see the requirements.')
     exit()
@@ -36,5 +34,5 @@ unfilled_table = pd.DataFrame(df_content).set_index('name')
 
 unfilled_table.to_csv(args.output_path)
 
-print('Generation complete. See the output files at', args.output_dir)
+print('Generation complete. See the output files at', args.output_path)
 print('After filling the tables, run rank.py')
