@@ -23,6 +23,8 @@ Theoretically, each member is responsible for filling one voting table. In the t
 |       7       | member i contribute very strongly more than member j |
 |       9       |   member i contribute extremely more than member j   |
 
+> Theoretically, value in range (0, 9] are all acceptable and meaningful. However, adding float numbers will cause troubles when computing the reciprocal for yourself. Thus, integers from 1 to 9 is recommanded.
+
 Note that the following relationship holds.
 
 ``` 
