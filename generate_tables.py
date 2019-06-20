@@ -11,8 +11,8 @@ arg_parser.add_argument(
     required=True
 )
 arg_parser.add_argument(
-    '--output_dir', 
-    help='output directory of the vote table files', 
+    '--output_path', 
+    help='output path of the vote table file', 
     type=str,
     default='./'
 )
@@ -34,7 +34,7 @@ df_content = {** df_content, **{'Filling Guide': 'https://github.com/xinxian-tec
 
 unfilled_table = pd.DataFrame(df_content).set_index('name')
 
-unfilled_table.to_csv(args.output_dir + 'vote_table.csv')
+unfilled_table.to_csv(args.output_path)
 
 print('Generation complete. See the output files at', args.output_dir)
 print('After filling the tables, run rank.py')
