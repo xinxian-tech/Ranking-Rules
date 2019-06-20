@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import glob
 import os
+from math import fabs
 
 arg_parser = argparse.ArgumentParser(
     description='Rank the team member\'s contribution according to vote tables.'
@@ -13,11 +14,27 @@ arg_parser.add_argument(
     type=str,
     default='./'
 )
+arg_parser.add_argument(
+    '--no_check', 
+    help='ignore non-positive value, huge value, and non-diagonal matrix in the input files.', 
+    default='True',
+    action='store_false'
+)
 args = arg_parser.parse_args()
 
 matrix_list = []
 name_list = []
 prev_file_name = ''
+
+def matrix_check(matrix, file_name):
+    for i in range(matrix.shape[0]):
+        for j in range(matrix.shape[1]):
+            if matrix[i, j] <= 0 or matrix[i, j] > 9:
+                print('value out of range in row', i, ', column', j, 'of file', file_name)
+                exit()
+            if fabs(1 - matrix[i, j] * matrix[j, i]) > 0.1:
+                print('non-diagonal value in row', i, ', column', j, 'of file', file_name)
+                exit()
 
 os.chdir(args.input_dir)
 for file_name in glob.glob('*.csv'):
@@ -27,10 +44,8 @@ for file_name in glob.glob('*.csv'):
         if len(matrix_list) != 0 and df.values.shape != matrix_list[-1].shape:
             print('Vote table shape mismatch:', file_name, 'and', prev_file_name)
             exit()
-        for element in np.nditer(df.values):
-            if element < 0:
-                print('Non-positive value detected in', file_name, ', abort ranking.')
-                exit()
+        if args.no_check:
+            matrix_check(df.values, file_name)
         matrix_list.append(df.values)
         prev_file_name = file_name
 

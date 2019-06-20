@@ -73,3 +73,15 @@ CI: 0.07077638131664488
 ----------------------------------------------------------------------
 ```
 
+
+
+</br>
+
+
+
+### Notes
+
+- The result of the program depends on the member's table submission quality. There is no outlier detection, thus extreme value may affect the result.
+- The output of `CI` quantifies the consistency of the input. The closer to 0, the better result it is.
+- The weights is just an reference, there is space for flexibility, such as adding an initial weight for all members and normalize the weights again.
+
