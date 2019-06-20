@@ -37,7 +37,7 @@ The table should be saved as .csv file.
 After gathering all members' submission of voting tables into a directory, the result can be fetched by running the following command.
 
 ``` bash
-python3 rank.py [-h] [--input_dir INPUT_DIR]
+python3 rank.py [-h] [--input_dir INPUT_DIR] [--no_check]
 ```
 
 </br>
